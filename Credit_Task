@@ -1,0 +1,134 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+int main(void)
+{
+    long a = pow(10,12);      //12 tane 0
+    long b = pow(10,13);      //13 tane 0
+    long c = pow(10,14);      //14 tane 0
+    long d = pow(10,15);      //15 tane 0
+    long numara = get_long("Kart numaranızı giriniz : ");
+    int vis1 = numara / a;    //16 haneli girilen sayı için
+    float vis11 = numara / a;
+    int ame = numara / b;     //15 haneli girilen sayı için
+    float ame1 = numara / b;
+    int mas = numara / c;     //16 haneli girilen sayı için  
+    float mas1 = numara / c;
+    int vis2 = numara / d;    //13 haneli girilen sayı için
+    float vis21 = numara / d;
+
+    if(ame == 34 || ame == 37)
+    {
+//sondan ikinci sayıdan başlatmak için bunu yaptım.
+        long numara1 = numara / 10;
+//her iki rakamdan birini toplamak için başlangıç değeri 0 olan f yarattım.
+        int f = 0;
+        int g = 0;
+        int ame2 = 0;
+//16 haneli ancak 2 şer 2 şer rakamları topladığı için 8 kere döndürdüm.
+        for(int i = 0 ; i < 8 ; i++)
+        {       
+            long e = pow(10,(i * 2));
+            ame = ((numara1 / e) - ((numara1 /(e*10)) * 10)); 
+            ame = ame * 2;
+            if(ame > 9)
+            {
+                ame = (ame - 10) + 1;
+            }          
+            f = f + ame;
+//2 ile çarpmadığımız rakamların toplamı
+            ame2 = ((numara / e) - ((numara / (e * 10)) * 10));
+            g = g + ame2;
+        }
+//bütün toplamları yap.
+        int toplam;
+        toplam = f + g;     
+//10'a bölümünden kalan 0'sa kart adını yazdır.
+        if(toplam % 10 == 0)
+        {
+            printf("AMEX\n");
+        }
+        else
+        {
+            printf("INVALID\n");
+        } 
+    }
+
+    else if(mas == 51 || mas == 52 || mas == 53 || mas == 54 || mas == 55)
+    {
+//sondan ikinci sayıdan başlatmak için bunu yaptım.
+        long numara1 = numara / 10;
+//her iki rakamdan birini toplamak için başlangıç değeri 0 olan f yarattım.
+        int f = 0;
+        int g = 0;
+        int ame2 = 0;
+//16 haneli ancak 2 şer 2 şer rakamları topladığı için 8 kere döndürdüm.
+        for(int i = 0 ; i < 9 ; i++)
+        {       
+            long e = pow(10,(i * 2));
+            ame = ((numara1 / e) - ((numara1 /(e*10)) * 10)); 
+            ame = ame * 2;
+            if(ame > 9)
+            {
+                ame = (ame - 10) + 1;
+            }          
+            f = f + ame;
+//2 ile çarpmadığımız rakamların toplamı
+            ame2 = ((numara / e) - ((numara / (e * 10)) * 10));
+            g = g + ame2;
+        }
+//bütün toplamları yap.
+        int toplam;
+        toplam = f + g;         
+        if(toplam % 10 == 0)
+        {
+            printf("MASTERCARD\n");
+        }
+        else
+        {
+            printf("INVALID miiiiii\n");
+        } 
+    }
+
+    else if(vis1 == 4 || vis2 == 4)
+    {
+//sondan ikinci sayıdan başlatmak için bunu yaptım.
+        long numara1 = numara / 10;
+//her iki rakamdan birini toplamak için başlangıç değeri 0 olan f yarattım.
+        int f = 0;
+        int g = 0;
+        int ame2 = 0;
+//16 haneli ancak 2 şer 2 şer rakamları topladığı için 8 kere döndürdüm.
+        for(int i = 0 ; i < 8 ; i++)
+        {       
+            long e = pow(10,(i * 2));
+            ame = ((numara1 / e) - ((numara1 /(e*10)) * 10)); 
+            ame = ame * 2;
+            if(ame > 9)
+            {
+                ame = (ame - 10) + 1;
+            }          
+            f = f + ame;
+//2 ile çarpmadığımız rakamların toplamı
+            ame2 = ((numara / e) - ((numara / (e * 10)) * 10));
+            g = g + ame2;
+        }
+//bütün toplamları yap.
+        int toplam;
+        toplam = f + g;   
+        if(toplam % 10 == 0)
+        {
+            printf("VISA\n");
+        }
+        else
+        {
+            printf("INVALID\n");
+        } 
+    }
+
+    else
+    {
+        printf("INVALID\n");
+    }   
+}
