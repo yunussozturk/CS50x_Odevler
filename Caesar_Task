@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(int argc , char *argv[])
+{
+    if(argc != 2)
+    {
+        printf("Usage: ./caesar key\n");
+        return 1;
+    }
+        int key = atoi(argv[1]);
+        if(key > 0)
+        {
+        string a = get_string("plaintext: ");
+        printf("ciphertext: ");
+     
+        
+             for(int i = 0 ; i < strlen(a) ; i++)
+             {
+                  if(a[i]<= 90 && a[i] >= 65)
+                  {
+                        if((a[i] + key) > 90)
+                        {
+                             a[i] = 64 + (((a[i] + key) - 90) % 26);
+                             printf("%c" , a[i]);
+                        }
+                        else
+                        {
+                             printf("%c", a[i] + key);
+                        }
+                  }
+                  else if(a[i] <= 122 && a[i] >= 97)
+                  {  
+                        if((a[i] + key) > 122)
+                        {
+                            a[i] = 96 + (((a[i] + key) - 122) % 26);
+                            printf("%c", a[i]);
+                        }
+                        else
+                        {
+                            printf("%c", a[i] + key);
+                        }
+                  }
+                  else
+                  {
+                      printf("%c", a[i]);
+                  }
+            }
+            printf("\n");
+        }
+        else
+        {
+             printf("bash: ./: Is a directory\n"); 
+             return 1;
+        }
+}
