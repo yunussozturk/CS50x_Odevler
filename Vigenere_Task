@@ -1,0 +1,99 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
+int shift(char c);
+int main(int argc, char *argv[])
+{
+ if(argc != 2 )
+   {
+    printf("Usage: ./vigenere keyword\n");
+    return 1;
+   }  
+//-------------------------------------------------------------------------------------------------------------------------------------- 
+// burada girilen argümanın sadece string olabilmesinin kodu var.
+  for(int i = 0 ; i < strlen(argv[1]) ; i++)
+  {        
+      if(isalpha((argv[1])[i]))
+      {
+ 
+      } 
+      else
+      {
+        printf("Usage: ./vigenere keyword\n");
+        return 1;
+      }
+  }
+//--------------------------------------------------------------------------------------------------------------------------------
+//burada üzerine şifre uygulanacak ve altında şifreli hali yazacak yerler var.
+ string s = get_string("plaintext: ");
+ printf("ciphertext: ");
+//---------------------------------------------------------------------------------------------------------------------------
+//burada bazı kısaltmalar var
+char * k = argv[1];
+int t = strlen(s);
+int b = strlen(k);
+int sayac = 0;
+//---------------------------------------------------------------------------------------------------------------------------
+//burada şifre ile metin birleşiyor.
+for(int m = 0 ; m < t ; m++)
+  {
+// burada metinde boşluk varsa şifreyi bir geri kaydırdım
+        if(s[m] < 65 || s[m] > 122)
+        {
+            for(int j = 0 ; j < 1 ; j++)
+            {
+                sayac++;
+            }
+            
+        }    
+     int n = (m - sayac) % b;
+     char z = k[n];
+     int key = shift(z);
+
+       if(islower(s[m]))
+       {
+             s[m] = s[m] + key ;
+     
+             if(s[m] > 122 && s[m] <= 127)
+             {
+                 s[m] = 96 + (s[m] - 122);
+             }
+             
+             if(s[m] < 0)
+             {
+                s[m] = 96 + (s[m] + 134);             
+             } 
+       }
+
+       else if(isupper(s[m]))
+       {              
+             s[m] = s[m] + key ;
+             if(s[m] > 90)
+             {
+                 s[m] = 64 + (s[m] - 90);
+             }
+        }
+
+    printf("%c", s[m]);              
+  }
+  printf("\n");
+}
+//----------------------------------------------------------------------------------------------------------------------------
+//burada key değerini 0-25 arası yapan fonksiyonu yazdık
+int shift(char c)
+{
+     int g = (int)c;
+
+     if(isupper(c))
+     {  
+        g = g - 65;
+     }
+     if(islower(c))
+     {         
+         g = g - 97;
+     }
+     return g;
+}
