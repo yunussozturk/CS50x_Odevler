@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+int main (void)
+{
+    float dolar;
+    do
+    {
+        dolar = get_float("Para üstünü giriniz:");
+    }
+    while(dolar<0);
+
+    int cent = round(dolar * 100);
+    printf("Para üstü : %i Cent\n", cent);
+
+    int sayac = 0;
+    while(cent >= 25)
+    {
+        cent-=25;
+        sayac++;
+    }
+    while(cent >= 10)
+    {
+        cent-=10;
+        sayac++;
+    }
+    while(cent >= 5)
+    {
+        cent-=5;
+        sayac++;
+    }
+    while(cent >= 1)
+    {
+        cent-=1;
+        sayac++;
+    }
+    printf("Vermeniz gereken madeni para sayısı = %i\n", sayac);
+}
