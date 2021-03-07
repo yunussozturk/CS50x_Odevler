@@ -1,38 +1,25 @@
-#include <cs50.h>
 #include <stdio.h>
-
+#include <cs50.h>
 int main(void)
 {
     int heigh;
-    do
-    {
-        heigh = get_int("Yüksekliği giriniz : ");
-    }
-    while(heigh < 1 || heigh > 8);
+do
+{
+    heigh = get_int("Yüksekliği giriniz:");
+}
+while(heigh < 1 || heigh > 8);
 
-//yükseklik kadar tekrar et
     for(int i = 1 ; i <= heigh ; i++)
     {
-//ilk engel
         for(int k = heigh ; k > i ; k--)
         {
             printf(" ");
         }
-        for(int l = 0 ; l < i ; l++)
-        {
-            printf("#");
-        }
-//arayı 2 kare boşalt
-        for(int m = 0 ; m < 1 ; m++)
-        {
-            printf("  ");
-        }
 
-//ikinci engel
         for(int j = 0 ; j < i ; j++)
         {
             printf("#");
         }
         printf("\n");
-    }
+    } 
 }
